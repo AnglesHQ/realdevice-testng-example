@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="example_06" configfailurepolicy="continue" thread-count="3" parallel="methods">
+    <test verbose="2" name="example_06" preserve-order="false">
+        <classes>
+            <class name="com.qa.tests.parallel.example_06.MethodInterceptorExample"/>
+        </classes>
+    </test>
+</suite>

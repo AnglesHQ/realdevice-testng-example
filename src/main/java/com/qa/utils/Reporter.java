@@ -8,6 +8,7 @@ public class Reporter {
     private static Logger logger = Logger.getLogger("Reporter");
 
     public static void debug(String message) {
+        /* Add your thread id to the logger to highlight which thread is doing the action. */
         logger.debug("Thread [" + Thread.currentThread().getId() + "] " + message);
     }
 

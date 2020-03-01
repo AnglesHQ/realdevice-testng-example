@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="example_02a" configfailurepolicy="continue" thread-count="3" parallel="methods">
+    <test verbose="2" name="example_02a" preserve-order="false">
+        <classes>
+            <class name="com.qa.tests.parallel.example_05.NonThreadSafeExampleOne"/>
+        </classes>
+    </test>
+</suite>
