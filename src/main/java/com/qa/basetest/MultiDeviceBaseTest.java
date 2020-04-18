@@ -17,8 +17,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
 
-@Listeners({ BaseMethodsInterceptor.class })
-public class MultiDeviceBaseTest {
+
+public class MultiDeviceBaseTest extends BaseTest {
 
     //grab the required test properties
     protected Properties baseProperties = PropertiesHelper.loadPropertiesFile("/test.properties");
@@ -86,17 +86,6 @@ public class MultiDeviceBaseTest {
     }
 
 
-    @BeforeMethod(alwaysRun = true)
-    public synchronized void before(Method method) {
-        //setup test.
-        Reporter.info("### Starting test [" + method.getName() + "] ###");
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public synchronized void after(Method method) {
-        //teardown test.
-        Reporter.info("### Finishing test [" + method.getName() + "] ###");
-    }
 
     public String getDeviceType() {
         return this.deviceType;
@@ -106,39 +95,7 @@ public class MultiDeviceBaseTest {
         return this.platformName;
     }
 
-    /**
-     *
-     * @param deviceName
-     * @param platformName
-     * @param platformVersion
-     * @return
-     */
     private static ArrayList<Object[]> filterDevicesByArguments(String deviceName, String platformName, String platformVersion) {
-        ArrayList<Object[]> filterMap = null;
-        ExcelHelper excelHelper = new ExcelHelper();
-        ArrayList<Object[]> allDevicesMap = excelHelper.retrieveAllRows("src/test/resources/devices/devicelist.xlsx", "RealDevices");
-
-        //do some filtering here and return a single device (can easily be adapted to return multiple devices).
-        if (!deviceName.isEmpty()) {
-            if (!deviceName.contains(",")) {
-                filterMap = excelHelper.filterMapByColumn(allDevicesMap, "name", deviceName);
-            } else {
-                filterMap = excelHelper.filterMapByColumn(allDevicesMap, "name", deviceName.split(","));
-            }
-        } else if (!platformName.isEmpty()) {
-            if (platformVersion.isEmpty()) {
-                //filter by platform
-                filterMap = excelHelper.filterMapByColumn(allDevicesMap, "platformName", platformName);
-            } else  {
-                // filter by platform and then version
-                filterMap = excelHelper.filterMapByColumn(allDevicesMap, "platformName", platformName);
-                filterMap = excelHelper.filterMapByColumn(filterMap, "platformVersion", platformVersion);
-            }
-        } else if (!platformVersion.isEmpty()) {
-            //filter by platform Version
-            filterMap = excelHelper.filterMapByColumn(allDevicesMap, "platformVersion", platformVersion);
-        }
-
-        return filterMap;
+        return filterDevicesByArguments(deviceName, platformName, platformVersion, "RealDevices");
     }
 }

@@ -6,9 +6,11 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
 import java.io.IOException;
+import java.rmi.Remote;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,17 +43,15 @@ public class TestUtils {
         }
     }
 
-    public static String takeScreenshot(AppiumDriver appiumDriver) {
+    public static String takeScreenshot(RemoteWebDriver remoteWebDriver) {
 
-        org.openqa.selenium.WebDriver augmentedDriver = new Augmenter().augment(appiumDriver);
+        org.openqa.selenium.WebDriver augmentedDriver = new Augmenter().augment(remoteWebDriver);
         File screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy_HH-mm-ss.SS");
         // Generate the name of the file
         String currentDate = dateFormat.format(new Date()).toString();
-        String deviceName = appiumDriver.getCapabilities().getCapability("testobject_device").toString();
-
         String filename = "target" + File.separator + currentDate + "_" + "thread_" + Thread.currentThread().getId()
-                + "_" + deviceName + "_" + "_screenshot.png";
+                + "_" + "_screenshot.png";
 
         try {
             FileUtils.copyFile(screenshot, new File(filename));

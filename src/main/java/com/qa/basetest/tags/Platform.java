@@ -1,5 +1,5 @@
 package com.qa.basetest.tags;
 
 public enum Platform {
-	IOS, ANDROID, NOT_DEFINED
+	IOS, ANDROID, WINDOWS, NOT_DEFINED
 }

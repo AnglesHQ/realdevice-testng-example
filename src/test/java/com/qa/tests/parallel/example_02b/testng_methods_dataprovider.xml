@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="example_02b" configfailurepolicy="continue" data-provider-thread-count="3">
+    <test verbose="2" name="example_02b">
+        <classes>
+            <class name="com.qa.tests.parallel.example_02b.ParallelBasicsOne"/>
+        </classes>
+    </test>
+</suite>

@@ -1,19 +1,30 @@
 package com.qa.pageobjects;
 
+import com.qa.utils.Reporter;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.util.Properties;
 
 public class RegisterPage extends BasePage {
 
-
+    private Properties baseProperties;
     //define page elements
     private By emailField = By.id("user_email");
     private By userNameField = By.id("user_login");
     private By passwordField = By.id("user_password");
     private By signUpButton = By.id("signup_button");
 
-    public RegisterPage(AppiumDriver appiumDriver) {
-        super(appiumDriver);
+    public RegisterPage(RemoteWebDriver remoteWebDriver, Properties baseProperties) {
+        super(remoteWebDriver);
+        this.baseProperties = baseProperties;
+    }
+
+    public void navigateTo() {
+        String url = baseProperties.get("url").toString();
+        remoteWebDriver.get(url + "/join");
+        Reporter.info("Navigated to [" + url + "]");
     }
 
     public void waitforPageLoaded() {
@@ -48,14 +59,14 @@ public class RegisterPage extends BasePage {
     }
 
     public String getEmailField() {
-        return appiumDriver.findElement(emailField).getAttribute("value");
+        return remoteWebDriver.findElement(emailField).getAttribute("value");
     }
 
     public String getUserNameField() {
-        return appiumDriver.findElement(userNameField).getAttribute("value");
+        return remoteWebDriver.findElement(userNameField).getAttribute("value");
     }
 
     public boolean isSignUpButtonEnabled() {
-        return appiumDriver.findElement(signUpButton).isEnabled();
+        return remoteWebDriver.findElement(signUpButton).isEnabled();
     }
 }

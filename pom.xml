@@ -8,18 +8,6 @@
     <artifactId>realdevice-testng-example</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <properties>
-        <!-- arguments to be passed through command line -->
-        <saucelabs_endpoint/>
-        <testobject_api_key/>
-        <testobject_app_id/>
-        <saucelabs_device_name/>
-        <saucelabs_platform_name/>
-        <saucelabs_platform_version/>
-        <url>https://github.com</url>
-        <testobject_session_creation_timeout>900000</testobject_session_creation_timeout>
-    </properties>
-
     <build>
         <testResources>
             <testResource>
@@ -37,12 +25,11 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
     <profiles>
         <profile>
-            <id>example_01</id>
+            <id>example_01_basic</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -62,7 +49,7 @@
             </build>
         </profile>
         <profile>
-            <id>example_02_classes</id>
+            <id>example_01b_timeout</id>
             <build>
                 <plugins>
                     <plugin>
@@ -71,7 +58,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_02/testng_classes.xml</suiteXmlFile>
+                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_01b/testng_methods_timeout.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
@@ -96,7 +83,7 @@
             </build>
         </profile>
         <profile>
-            <id>example_02_tests</id>
+            <id>example_02b_dataprovider</id>
             <build>
                 <plugins>
                     <plugin>
@@ -105,7 +92,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_02/testng_tests.xml</suiteXmlFile>
+                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_02b/testng_methods_dataprovider.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
@@ -113,7 +100,7 @@
             </build>
         </profile>
         <profile>
-            <id>example_03_instances</id>
+            <id>example_03_tests</id>
             <build>
                 <plugins>
                     <plugin>
@@ -122,7 +109,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_03/testng_instances.xml</suiteXmlFile>
+                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_03/testng_tests.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
@@ -130,7 +117,7 @@
             </build>
         </profile>
         <profile>
-            <id>example_04_factory</id>
+            <id>example_04_classes</id>
             <build>
                 <plugins>
                     <plugin>
@@ -139,7 +126,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_04/testng_factory.xml</suiteXmlFile>
+                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_04/testng_classes.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
@@ -147,7 +134,7 @@
             </build>
         </profile>
         <profile>
-            <id>example_05_non_threadsafe</id>
+            <id>example_05_instances</id>
             <build>
                 <plugins>
                     <plugin>
@@ -156,7 +143,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_05/testng_non_threadsafe.xml</suiteXmlFile>
+                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_05/testng_instances.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
@@ -164,7 +151,7 @@
             </build>
         </profile>
         <profile>
-            <id>example_05_threadsafe</id>
+            <id>example_06a_non_threadsafe</id>
             <build>
                 <plugins>
                     <plugin>
@@ -173,7 +160,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_05/testng_threadsafe.xml</suiteXmlFile>
+                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_06a/testng_non_threadsafe.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
@@ -181,7 +168,7 @@
             </build>
         </profile>
         <profile>
-            <id>example_06_interceptor</id>
+            <id>example_06_threadsafe</id>
             <build>
                 <plugins>
                     <plugin>
@@ -190,7 +177,76 @@
                         <version>2.18.1</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_06/testng_interceptor.xml</suiteXmlFile>
+                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_06b/testng_threadsafe.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>example_07_interceptor</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.18.1</version>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_08/testng_interceptor.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>main_example_multidevice</id>
+            <properties>
+                <!-- arguments to be passed through command line -->
+                <saucelabs_endpoint>http://eu1.appium.testobject.com/wd/hub</saucelabs_endpoint>
+                <testobject_api_key/>
+                <testobject_app_id/>
+                <saucelabs_device_name/>
+                <saucelabs_platform_name/>
+                <saucelabs_platform_version/>
+                <url>https://github.com</url>
+                <testobject_session_creation_timeout>900000</testobject_session_creation_timeout>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.18.1</version>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/main_example/testng.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>main_example_multibrowser</id>
+            <properties>
+                <!-- arguments to be passed through command line -->
+                <saucelabs_endpoint>https://ondemand.eu-central-1.saucelabs.com:443/wd/hub</saucelabs_endpoint>
+                <saucelabs.username/>
+                <saucelabs.accessKey/>
+                <url>https://github.com</url>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.18.1</version>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/main_example/testng_browser.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
@@ -204,7 +260,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.1.0</version>
+            <version>6.14.3</version>
         </dependency>
 
         <!-- required for running appium tests -->

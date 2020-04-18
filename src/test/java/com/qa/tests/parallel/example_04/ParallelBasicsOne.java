@@ -1,4 +1,4 @@
-package com.qa.tests.parallel.example_02;
+package com.qa.tests.parallel.example_04;
 
 import com.qa.tests.parallel.common.BaseTest;
 import com.qa.utils.Reporter;
@@ -41,18 +41,4 @@ public class ParallelBasicsOne extends BaseTest {
         Reporter.info("ParallelBasicsOne: ParallelBasicsOneTest2");
         pause();
     }
-
-    @Test
-    private void ParallelBasicsOneTest3() {
-        Reporter.info("ParallelBasicsOne: ParallelBasicsOneTest3");
-        pause();
-    }
-
-
-    @Test
-    private void ParallelBasicsOneTest4() {
-        Reporter.info("ParallelBasicsOne: ParallelBasicsOneTest4");
-        pause();
-    }
-
 }

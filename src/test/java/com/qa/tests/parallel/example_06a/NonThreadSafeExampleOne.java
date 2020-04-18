@@ -1,10 +1,13 @@
-package com.qa.tests.parallel.example_05;
+package com.qa.tests.parallel.example_06a;
 
 import com.qa.tests.parallel.common.BaseTest;
 import com.qa.utils.Reporter;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class NonThreadSafeExampleOne extends BaseTest {
 
@@ -35,7 +38,7 @@ public class NonThreadSafeExampleOne extends BaseTest {
         pause();
     }
 
-    @Test (timeOut = 100000)
+    @Test
     private void ParallelInstancesOneTest1() {
         Reporter.info("ThreadSafeExampleOne: ParallelInstancesOneTest1" + "[ " + testName + "]");
     }

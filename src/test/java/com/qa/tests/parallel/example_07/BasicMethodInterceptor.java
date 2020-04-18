@@ -1,4 +1,4 @@
-package com.qa.tests.parallel.example_06;
+package com.qa.tests.parallel.example_07;
 
 import org.testng.IMethodInstance;
 import org.testng.IMethodInterceptor;
