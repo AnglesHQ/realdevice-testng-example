@@ -168,7 +168,7 @@
             </build>
         </profile>
         <profile>
-            <id>example_06_threadsafe</id>
+            <id>example_06b_threadsafe</id>
             <build>
                 <plugins>
                     <plugin>
@@ -194,7 +194,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_08/testng_interceptor.xml</suiteXmlFile>
+                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_07/testng_interceptor.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>

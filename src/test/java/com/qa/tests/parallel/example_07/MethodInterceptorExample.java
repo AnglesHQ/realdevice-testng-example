@@ -46,6 +46,7 @@ public class MethodInterceptorExample extends BaseTest {
         Reporter.info("MethodInterceptorExample: Test2" + "[ " + testName.get() + "]");
     }
 
+    // this test will be intercepted
     @Test
     private void MethodInterceptorExampleTest3() {
         Reporter.info("MethodInterceptorExample: Test3" + "[ " + testName.get() + "]");

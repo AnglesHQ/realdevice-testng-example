@@ -68,7 +68,6 @@ public class BrowserBaseTest extends BaseTest {
         RemoteWebDriver webDriver = null;
         try {
             sauceLabsURL = new URL(urlString);
-            Reporter.info("Connecting to [" + sauceLabsURL + "] with desiredCaps [" + desiredCapabilities.toString() + "]");
             webDriver = new RemoteWebDriver(sauceLabsURL, desiredCapabilities);
         } catch (Exception exception) {
             Reporter.info(exception.getMessage());

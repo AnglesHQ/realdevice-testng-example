@@ -11,6 +11,7 @@ import java.util.List;
 
 public class NonThreadSafeExampleOne extends BaseTest {
 
+    //this class variable will be shared across the threads.
     private String testName;
 
     @BeforeClass

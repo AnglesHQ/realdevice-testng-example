@@ -29,8 +29,42 @@ mvn clean test
  -Dtags=github
  ```
  
- #### Filtering test by tags
- The remaining two arguments shown above ("tags", "testPhases") are specific for filtering and will select the test cases to be executed based on the tags added in the @TestTags annotation.
- 
+#### Filtering test by tags
+The remaining two arguments shown above ("tags", "testPhases") are specific for filtering and will select the test cases to be executed based on the tags added in the @TestTags annotation.
+  
+#### Running the exam
+```bash
+mvn clean test -Pexample_01_basic
+
+mvn clean test -Pexample_01b_timeout
+
+mvn clean test -Pexample_02_methods
+
+mvn clean test -Pexample_02b_dataprovider
+
+mvn clean test -Pexample_03_tests
+
+mvn clean test -Pexample_04_classes
+
+mvn clean test -Pexample_05_instances
+
+mvn clean test -Pexample_06a_non_threadsafe
+
+mvn clean test -Pexample_06_threadsafe
+
+mvn clean test -Pexample_07_intercepto
+
+mvn clean test -Pexample_07_interceptor
+
+mvn clean test -Pexample_07_interceptor
+
+mvn clean test -Pmain_example_multibrowser -Dsaucelabs_username=${sl_username} -Dsaucelabs_accessKey=${sl_accesskey}
+
+mvn clean test -Pmain_example_multidevice -Dtestobject_api_key=${to_api_key} -Dtestobject_app_id=${to_app_id}
+
+mvn clean test -Pmain_example_combined -Dtestobject_api_key=${to_api_key} -Dtestobject_app_id=${to_app_id} -Dsaucelabs_username=${sl_username} -Dsaucelabs_accessKey=${sl_accesskey}
+
+```
+
   ## License
  This project is released under MIT license. Copyright (c) 2018 Gamesys Limited. All rights reserved.
