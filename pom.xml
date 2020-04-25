@@ -204,13 +204,14 @@
         <profile>
             <id>main_example_multidevice</id>
             <properties>
-                <!-- arguments to be passed through command line -->
-                <saucelabs_endpoint>http://eu1.appium.testobject.com/wd/hub</saucelabs_endpoint>
+                <!-- Only reason they are different as platforms have not merged yet, otherwise argument names can be the same.-->
+                <testobject_endpoint>http://eu1.appium.testobject.com/wd/hub</testobject_endpoint>
                 <testobject_api_key/>
                 <testobject_app_id/>
-                <saucelabs_device_name/>
-                <saucelabs_platform_name/>
-                <saucelabs_platform_version/>
+                <!-- adding generic examples to now show device ids -->
+                <testobject_device_name>android_phone_only,ios_phone_only</testobject_device_name>
+                <testobject_platform_name/>
+                <testobject_platform_version/>
                 <url>https://github.com</url>
                 <testobject_session_creation_timeout>900000</testobject_session_creation_timeout>
             </properties>
@@ -222,7 +223,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/main_example/testng.xml</suiteXmlFile>
+                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/main_example/testng_devices.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
@@ -234,8 +235,11 @@
             <properties>
                 <!-- arguments to be passed through command line -->
                 <saucelabs_endpoint>https://ondemand.eu-central-1.saucelabs.com:443/wd/hub</saucelabs_endpoint>
-                <saucelabs.username/>
-                <saucelabs.accessKey/>
+                <saucelabs_username/>
+                <saucelabs_accessKey/>
+                <saucelabs_device_name>SL_WIN10_CHROME_80,SL_WIN10_CHROME_79,SL_WIN10_CHROME_78</saucelabs_device_name>
+                <saucelabs_platform_name/>
+                <saucelabs_platform_version/>
                 <url>https://github.com</url>
             </properties>
             <build>
@@ -253,6 +257,42 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>main_example_combined</id>
+            <properties>
+                <!-- arguments to be passed through command line -->
+                <testobject_endpoint>http://eu1.appium.testobject.com/wd/hub</testobject_endpoint>
+                <testobject_api_key/>
+                <testobject_app_id/>
+                <testobject_device_name>android_phone_only,ios_phone_only</testobject_device_name>
+                <testobject_platform_name/>
+                <testobject_platform_version/>
+                <testobject_session_creation_timeout>900000</testobject_session_creation_timeout>
+
+                <saucelabs_endpoint>https://ondemand.eu-central-1.saucelabs.com:443/wd/hub</saucelabs_endpoint>
+                <saucelabs_username/>
+                <saucelabs_accessKey/>
+                <saucelabs_device_name>SL_WIN10_CHROME_80,SL_WIN10_CHROME_79,SL_WIN10_CHROME_78</saucelabs_device_name>
+                <saucelabs_platform_name/>
+                <saucelabs_platform_version/>
+                <supported_devices></supported_devices>
+                <url>https://github.com</url>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.18.1</version>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>src/test/java/com/qa/tests/parallel/main_example/testng_combined.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
     <dependencies>
@@ -261,6 +301,12 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.14.3</version>
+        </dependency>
+        <!-- selenium java client -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version>
         </dependency>
 
         <!-- required for running appium tests -->

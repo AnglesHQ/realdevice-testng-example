@@ -11,10 +11,12 @@ import com.qa.utils.Reporter;
 import com.qa.utils.TestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Factory;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 
 public class MultiBrowserExampleTest extends BrowserBaseTest {
@@ -24,21 +26,52 @@ public class MultiBrowserExampleTest extends BrowserBaseTest {
         super(deviceConfig);
     }
 
-    @TestTags(phase = Phase.REGRESSION, devicetype = DeviceType.DESKTOP, platform = {Platform.WINDOWS}, tags="github")
+
+    /**
+     * As resources are not limited we can setup/teardown browser for each test.
+     */
+    @BeforeMethod(alwaysRun = true)
+    public void baseBeforeMethod(Method method) {
+        Reporter.info("Running test " +  method.getName() + " against device [" + deviceName + "].");
+        remoteWebDriver.set(instantiateRemoteWebDriver(method.getName(), deviceConfig));
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void baseAfterMethod() {
+        if (remoteWebDriver.get() != null) {
+            Reporter.info("Tearind Down WebDriver");
+            remoteWebDriver.get().close();
+            remoteWebDriver.get().quit();
+        }
+    }
+    @TestTags(phase = Phase.REGRESSION, devicetype = DeviceType.DESKTOP, platform = {Platform.WINDOWS}, tags = "github")
     @Test
     public void exampleSeleniumTest() {
-      Reporter.info("Running");
+        runTest();
+    }
+
+    @TestTags(phase = Phase.REGRESSION, devicetype = DeviceType.DESKTOP, platform = {Platform.WINDOWS}, tags = "github")
+    @Test
+    public void exampleSeleniumTest2() {
+        runTest();
+    }
+
+    /**
+     * Running same test twice, but in reality these would be two different tests.
+     */
+    private void runTest() {
+        Reporter.info("Running");
         //visit home page
-        HomePage homePage = new HomePage(remoteWebDriver, baseProperties);
+        HomePage homePage = new HomePage(remoteWebDriver.get(), baseProperties);
         homePage.navigateTo();
         //homePage.toggleMenu();
 
         //go to registration page.
-        RegisterPage registerPage = new RegisterPage(remoteWebDriver, baseProperties);
+        RegisterPage registerPage = new RegisterPage(remoteWebDriver.get(), baseProperties);
         registerPage.navigateTo();
         registerPage.waitforPageLoaded();
-        TestUtils.takeScreenshot(remoteWebDriver);
-        Reporter.info("Current Url : " + remoteWebDriver.getCurrentUrl());
+        TestUtils.takeScreenshot(remoteWebDriver.get());
+        Reporter.info("Current Url : " + remoteWebDriver.get().getCurrentUrl());
 
         //populate the fields
         registerPage.selectUserNameField();
@@ -49,18 +82,13 @@ public class MultiBrowserExampleTest extends BrowserBaseTest {
         registerPage.selectPasswordField();
         registerPage.populatePasswordField("MyP@ssw0rd1s5up3rSecur3");
 
+        // take random screenshot.
+        TestUtils.takeScreenshot(remoteWebDriver.get());
+
         //assert the values
         Assert.assertEquals(registerPage.getUserNameField(), randomUserName);
         Assert.assertEquals(registerPage.getEmailField(), "user123@emailaddress.com");
         Assert.assertEquals(registerPage.isSignUpButtonEnabled(), true);
-
-        TestUtils.takeScreenshot(remoteWebDriver);
-    }
-
-    @AfterClass
-    public void afterClass() {
-        remoteWebDriver.close();
-        remoteWebDriver.quit();
     }
 
 }

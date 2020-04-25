@@ -27,6 +27,20 @@ public class MultiDeviceExampleTest extends MultiDeviceBaseTest {
     @TestTags(phase = Phase.REGRESSION, devicetype = DeviceType.PHONE, platform = {Platform.ANDROID, Platform.IOS}, tags="github")
     @Test
     public void exampleAppiumTest() {
+        runTest();
+    }
+
+
+    @TestTags(phase = Phase.REGRESSION, devicetype = DeviceType.PHONE, platform = {Platform.ANDROID, Platform.IOS}, tags="github")
+    @Test
+    public void exampleAppiumTest2() {
+        runTest();
+    }
+
+    /**
+     * Running same test twice, but in reality these would be two different tests.
+     */
+    private void runTest() {
         //visit home page
         HomePage homePage = new HomePage(appiumDriver, baseProperties);
         homePage.navigateTo();
@@ -55,6 +69,7 @@ public class MultiDeviceExampleTest extends MultiDeviceBaseTest {
 
         TestUtils.takeScreenshot(appiumDriver);
     }
+
 
     @AfterClass
     public void afterClass() {

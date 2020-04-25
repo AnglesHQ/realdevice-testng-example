@@ -32,7 +32,7 @@ public abstract class BaseTest {
      * @param platformVersion
      * @return
      */
-    protected static ArrayList<Object[]> filterDevicesByArguments(String deviceName, String platformName, String platformVersion, String sheetName) {
+    protected static ArrayList<Object[]> filterDevicesByArguments(String deviceName, String platformName, String platformVersion, Boolean supported, String sheetName) {
         ArrayList<Object[]> filterMap = null;
         ExcelHelper excelHelper = new ExcelHelper();
         //grab all devices from a sheet.
@@ -59,8 +59,10 @@ public abstract class BaseTest {
         } else if (!platformVersion.isEmpty()) {
             //filter by platform Version
             filterMap = excelHelper.filterMapByColumn(allDevicesMap, "platformVersion", platformVersion);
+        } else if (supported) {
+            //filter by supported devices.
+            filterMap = excelHelper.filterMapByColumn(allDevicesMap, "supported", "true");
         }
-
         return filterMap;
     }
 
