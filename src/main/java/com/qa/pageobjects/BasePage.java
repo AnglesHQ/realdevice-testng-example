@@ -5,6 +5,7 @@ import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,36 +13,36 @@ import static com.qa.utils.TestUtils.pause;
 
 public class BasePage {
 
-    protected AppiumDriver appiumDriver;
+    protected RemoteWebDriver remoteWebDriver;
     protected WebDriverWait waitDriver;
     private final Integer DEFAULT_TIME_OUT = 30;
     //longer poll time than original 500 ms
     private final Long DEFAULT_POLL_TIME = new Long(1000);
 
-    public BasePage(AppiumDriver appiumDriver) {
-        this.appiumDriver = appiumDriver;
-        waitDriver = new WebDriverWait(appiumDriver, DEFAULT_TIME_OUT, DEFAULT_POLL_TIME);
+    public BasePage(RemoteWebDriver remoteWebDriver) {
+        this.remoteWebDriver = remoteWebDriver;
+        waitDriver = new WebDriverWait(remoteWebDriver, DEFAULT_TIME_OUT, DEFAULT_POLL_TIME);
     }
 
-    public BasePage(AppiumDriver appiumDriver, Integer timeout, long pollTime) {
-        this.appiumDriver = appiumDriver;
-        waitDriver = new WebDriverWait(appiumDriver, timeout, pollTime);
+    public BasePage(RemoteWebDriver remoteWebDriver, Integer timeout, long pollTime) {
+        this.remoteWebDriver = remoteWebDriver;
+        waitDriver = new WebDriverWait(remoteWebDriver, timeout, pollTime);
     }
 
     public void clickBy(By by){
         waitForElementToBeClickable(by);
-        appiumDriver.findElement(by).click();
+        remoteWebDriver.findElement(by).click();
         Reporter.info("Clicked on button with by [" + by + "]");
     }
 
     protected void populateElementWithText(By by, String text) {
-        WebElement element = appiumDriver.findElement(by);
+        WebElement element = remoteWebDriver.findElement(by);
         Reporter.info("Attempting to send the string [" + text + "] to element by [" + by + "]");
         element.sendKeys(text);
     }
 
     protected void waitForElementToBeSelected(By by) {
-        WebElement element = appiumDriver.findElement(by);
+        WebElement element = remoteWebDriver.findElement(by);
         long startTime = System.currentTimeMillis();
         long endTime = DEFAULT_TIME_OUT * 1000;
         long elapsedTime = System.currentTimeMillis() - startTime;
@@ -50,7 +51,7 @@ public class BasePage {
             while(elapsedTime < endTime) {
                 elapsedTime = System.currentTimeMillis() - startTime;
                 pause(DEFAULT_POLL_TIME);
-                if(element.getLocation().equals(appiumDriver.switchTo().activeElement().getLocation())) {
+                if(element.getLocation().equals(remoteWebDriver.switchTo().activeElement().getLocation())) {
                     Reporter.info("Waited for element with by [" + by + "] to be selected");
                     return;
                 }
