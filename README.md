@@ -32,7 +32,7 @@ mvn clean test
 #### Filtering test by tags
 The remaining two arguments shown above ("tags", "testPhases") are specific for filtering and will select the test cases to be executed based on the tags added in the @TestTags annotation.
   
-#### Running the exam
+#### Running the exammples 
 ```bash
 mvn clean test -Pexample_01_basic
 
@@ -50,11 +50,7 @@ mvn clean test -Pexample_05_instances
 
 mvn clean test -Pexample_06a_non_threadsafe
 
-mvn clean test -Pexample_06_threadsafe
-
-mvn clean test -Pexample_07_intercepto
-
-mvn clean test -Pexample_07_interceptor
+mvn clean test -Pexample_06b_threadsafe
 
 mvn clean test -Pexample_07_interceptor
 
