@@ -58,7 +58,7 @@ mvn clean test -Pmain_example_multibrowser -Dsaucelabs_username=${sl_username} -
 
 mvn clean test -Pmain_example_multidevice -Dtestobject_api_key=${to_api_key} -Dtestobject_app_id=${to_app_id}
 
-mvn clean test -Pmain_example_combined -Dtestobject_api_key=${to_api_key} -Dtestobject_app_id=${to_app_id} -Dsaucelabs_username=${sl_username} -Dsaucelabs_accessKey=${sl_accesskey}
+mvn clean test -Pmain_example_combined -Dtestobject_api_key=${to_api_key} -Dtestobject_app_id=${to_app_id} -Dsaucelabs_username=${sl_username} -Dsaucelabs_accessKey=${sl_accesskey} -Dsupported_devices=true
 
 ```
 
