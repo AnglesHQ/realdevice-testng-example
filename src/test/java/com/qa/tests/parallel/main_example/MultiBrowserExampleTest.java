@@ -1,5 +1,7 @@
 package com.qa.tests.parallel.main_example;
 
+import com.github.angleshq.angles.api.models.screenshot.Screenshot;
+import com.github.angleshq.angles.api.models.screenshot.ScreenshotDetails;
 import com.qa.basetest.BrowserBaseTest;
 import com.qa.basetest.TestTags;
 import com.qa.basetest.tags.DeviceType;
@@ -10,6 +12,7 @@ import com.qa.pageobjects.RegisterPage;
 import com.qa.utils.Reporter;
 import com.qa.utils.TestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -39,7 +42,7 @@ public class MultiBrowserExampleTest extends BrowserBaseTest {
     @AfterMethod(alwaysRun = true)
     public void baseAfterMethod() {
         if (remoteWebDriver.get() != null) {
-            Reporter.info("Tearind Down WebDriver");
+            Reporter.info("Tearing Down WebDriver");
             remoteWebDriver.get().close();
             remoteWebDriver.get().quit();
         }
@@ -70,7 +73,11 @@ public class MultiBrowserExampleTest extends BrowserBaseTest {
         RegisterPage registerPage = new RegisterPage(remoteWebDriver.get(), baseProperties);
         registerPage.navigateTo();
         registerPage.waitforPageLoaded();
-        TestUtils.takeScreenshot(remoteWebDriver.get());
+
+        Screenshot screenshot = TestUtils.takeScreenshot(remoteWebDriver.get(), "registration_page");
+        // can only be used once a baseline is set.
+        //Reporter.compareAgainstBaseline(screenshot, 1.0);
+
         Reporter.info("Current Url : " + remoteWebDriver.get().getCurrentUrl());
 
         //populate the fields
@@ -83,7 +90,10 @@ public class MultiBrowserExampleTest extends BrowserBaseTest {
         registerPage.populatePasswordField("MyP@ssw0rd1s5up3rSecur3");
 
         // take random screenshot.
-        TestUtils.takeScreenshot(remoteWebDriver.get());
+        Screenshot secondScreenshot = TestUtils.takeScreenshot(remoteWebDriver.get(), "registration_page_populated");
+
+        // can only be used once a baseline is set.
+        // Reporter.compareAgainstBaseline(secondScreenshot, 1.0);
 
         //assert the values
         Assert.assertEquals(registerPage.getUserNameField(), randomUserName);

@@ -32,12 +32,14 @@ public class HooksBasicsTwo extends BaseTest {
 
     @Test
     private void HooksBasicsTwoTest1() {
+        Reporter.startAction("Running Test");
         Reporter.info("Running HooksBasicsTwoTest1");
         pause();
     }
 
     @Test
     private void HooksBasicsTwoTest2() {
+        Reporter.startAction("Running Test");
         Reporter.info("Running HooksBasicsTwoTest2");
         pause();
     }

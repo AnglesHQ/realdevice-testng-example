@@ -3,6 +3,7 @@ package com.qa.basetest;
 import com.qa.utils.ExcelHelper;
 import com.qa.utils.Reporter;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 
@@ -12,17 +13,22 @@ import java.util.ArrayList;
 @Listeners({ BaseMethodsInterceptor.class })
 public abstract class BaseTest {
 
+    @BeforeClass(alwaysRun = true)
+    protected void baseBeforeClass() {
+        Reporter.startBuild();
+    }
 
     @BeforeMethod(alwaysRun = true)
     public synchronized void before(Method method) {
-        //setup test.
+        Reporter.startTest(method.getClass().getSimpleName(), method.getName());
         Reporter.info("### Starting test [" + method.getName() + "] ###");
     }
 
     @AfterMethod(alwaysRun = true)
     public synchronized void after(Method method) {
-        //teardown test.
+        Reporter.startAction("after");
         Reporter.info("### Finishing test [" + method.getName() + "] ###");
+        Reporter.saveTest();
     }
 
     /**

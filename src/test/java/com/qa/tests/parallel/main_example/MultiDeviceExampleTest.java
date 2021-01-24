@@ -1,5 +1,6 @@
 package com.qa.tests.parallel.main_example;
 
+import com.github.angleshq.angles.api.models.screenshot.Screenshot;
 import com.qa.basetest.MultiDeviceBaseTest;
 import com.qa.basetest.TestTags;
 import com.qa.basetest.tags.DeviceType;
@@ -50,7 +51,8 @@ public class MultiDeviceExampleTest extends MultiDeviceBaseTest {
         RegisterPage registerPage = new RegisterPage(appiumDriver, baseProperties);
         registerPage.navigateTo();
         registerPage.waitforPageLoaded();
-        TestUtils.takeScreenshot(appiumDriver);
+        Screenshot screenshot = TestUtils.takeScreenshot(appiumDriver, "registration_page");
+        // Reporter.compareAgainstBaseline(screenshot, 1.0);
         Reporter.info("Current Url : " + appiumDriver.getCurrentUrl());
 
         //populate the fields
@@ -62,12 +64,13 @@ public class MultiDeviceExampleTest extends MultiDeviceBaseTest {
         registerPage.selectPasswordField();
         registerPage.populatePasswordField("MyP@ssw0rd1s5up3rSecur3");
 
+        Screenshot secondScreenshot = TestUtils.takeScreenshot(appiumDriver, "registration_page_populated");
+        // Reporter.compareAgainstBaseline(secondScreenshot, 1.0);
+
         //assert the values
         Assert.assertEquals(registerPage.getUserNameField(), randomUserName);
         Assert.assertEquals(registerPage.getEmailField(), "user123@emailaddress.com");
         Assert.assertEquals(registerPage.isSignUpButtonEnabled(), true);
-
-        TestUtils.takeScreenshot(appiumDriver);
     }
 
 

@@ -27,6 +27,15 @@
             </plugin>
         </plugins>
     </build>
+    <properties>
+        <!-- modify these values to meet your own config-->
+        <angles_enabled>true</angles_enabled>
+        <angles_host>http://127.0.0.1:3000</angles_host>
+        <angles_team>angles</angles_team>
+        <angles_environment>qa</angles_environment>
+        <angles_component>example</angles_component>
+        <angles_run_name>Example test run</angles_run_name>
+    </properties>
     <profiles>
         <profile>
             <id>example_01_basic</id>
@@ -338,6 +347,12 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.16</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.angleshq</groupId>
+            <artifactId>angles-java-client</artifactId>
+            <version>1.0.0-BETA4</version>
         </dependency>
 
     </dependencies>
