@@ -6,6 +6,7 @@ import com.github.angleshq.angles.api.models.screenshot.ImageCompareResponse;
 import com.github.angleshq.angles.api.models.screenshot.Screenshot;
 import com.github.angleshq.angles.api.models.screenshot.ScreenshotDetails;
 import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.TestNGException;
 
 import java.util.Properties;
@@ -21,25 +22,28 @@ public class Reporter {
         anglesProperties = PropertiesHelper.loadPropertiesFile("/angles.properties");
         anglesEnabled = Boolean.valueOf(anglesProperties.getProperty("angles_enabled", "false"));
 
-        if (anglesEnabled)
-            anglesReporter = AnglesReporter.getInstance(anglesProperties.getProperty("angles_host") +  "/rest/api/v1.0/");
+        if (anglesEnabled) {
+            anglesReporter = AnglesReporter.getInstance(anglesProperties.getProperty("angles_host") + "/rest/api/v1.0/");
+
+            anglesReporter.startBuild(anglesProperties.getProperty("angles_run_name", "Test Run"),
+                    anglesProperties.getProperty("angles_environment"),
+                    anglesProperties.getProperty("angles_team"),
+                    anglesProperties.getProperty("angles_component"));
+
+            // upload artifacts, here you could make your own calls to determine versions of SUT.
+            Artifact[] artifacts = new Artifact[]{
+                    new Artifact("com.example", "angles-ui", "1.0.0-BETA4"),
+                    new Artifact("com.example", "angles", "1.0.0-BETA4")
+            };
+            anglesReporter.storeArtifacts(artifacts);
+        }
     }
 
     public static void startBuild() {
         logger.info("Thread [" + Thread.currentThread().getId() + "] Starting build with angles enabled [" + anglesEnabled + "]");
 
         if (anglesEnabled) {
-            anglesReporter.startBuild(anglesProperties.getProperty("angles_run_name", "Test Run"),
-                    anglesProperties.getProperty("angles_environment"),
-                    anglesProperties.getProperty("angles_team"),
-                    anglesProperties.getProperty("angles_component"));
 
-//            // upload artifacts, here you could make your own calls to determine versions of SUT.
-//            Artifact[] artifacts = new Artifact[]{
-//                    new Artifact("com.example", "angles-ui", "1.0.0-BETA4"),
-//                    new Artifact("com.example", "angles", "1.0.0-BETA4")
-//            };
-//            anglesReporter.storeArtifacts(artifacts);
         }
     }
 
@@ -115,5 +119,15 @@ public class Reporter {
             anglesReporter.pass("Image compare [" + screenshot.getView() + "]\"", "Mismatch below [" + acceptableMismatch + "]%", "Mismatch was [" + compareResponse.getMisMatchPercentage() + "]", "");
 
         }
+    }
+
+    public static void assertEquals(Object expected, Object actual) {
+        if (expected.equals(actual)) {
+            anglesReporter.pass("compare", expected.toString(), actual.toString(), "");
+        } else {
+            anglesReporter.fail("compare", expected.toString(), actual.toString(), "");
+        }
+        Assert.assertEquals(actual, expected);
+
     }
 }

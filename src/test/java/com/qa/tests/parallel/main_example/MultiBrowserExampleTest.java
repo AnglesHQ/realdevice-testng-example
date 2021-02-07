@@ -1,7 +1,6 @@
 package com.qa.tests.parallel.main_example;
 
 import com.github.angleshq.angles.api.models.screenshot.Screenshot;
-import com.github.angleshq.angles.api.models.screenshot.ScreenshotDetails;
 import com.qa.basetest.BrowserBaseTest;
 import com.qa.basetest.TestTags;
 import com.qa.basetest.tags.DeviceType;
@@ -12,8 +11,6 @@ import com.qa.pageobjects.RegisterPage;
 import com.qa.utils.Reporter;
 import com.qa.utils.TestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Factory;
@@ -63,7 +60,7 @@ public class MultiBrowserExampleTest extends BrowserBaseTest {
      * Running same test twice, but in reality these would be two different tests.
      */
     private void runTest() {
-        Reporter.info("Running");
+        Reporter.startAction("Checking registration Page");
         //visit home page
         HomePage homePage = new HomePage(remoteWebDriver.get(), baseProperties);
         homePage.navigateTo();
@@ -96,9 +93,9 @@ public class MultiBrowserExampleTest extends BrowserBaseTest {
         // Reporter.compareAgainstBaseline(secondScreenshot, 1.0);
 
         //assert the values
-        Assert.assertEquals(registerPage.getUserNameField(), randomUserName);
-        Assert.assertEquals(registerPage.getEmailField(), "user123@emailaddress.com");
-        Assert.assertEquals(registerPage.isSignUpButtonEnabled(), true);
+        Reporter.assertEquals(registerPage.getUserNameField(), randomUserName);
+        Reporter.assertEquals(registerPage.getEmailField(), "user123@emailaddress.com");
+//        Reporter.assertEquals(registerPage.isSignUpButtonEnabled(), true);
     }
 
 }

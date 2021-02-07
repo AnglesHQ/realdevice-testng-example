@@ -13,10 +13,6 @@ import java.util.ArrayList;
 @Listeners({ BaseMethodsInterceptor.class })
 public abstract class BaseTest {
 
-    @BeforeClass(alwaysRun = true)
-    protected void baseBeforeClass() {
-        Reporter.startBuild();
-    }
 
     @BeforeMethod(alwaysRun = true)
     public synchronized void before(Method method) {
