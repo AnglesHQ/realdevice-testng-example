@@ -113,11 +113,13 @@ public class Reporter {
 
     public static void compareAgainstBaseline(Screenshot screenshot, Double acceptableMismatch) {
         ImageCompareResponse compareResponse = anglesReporter.compareScreenshotAgainstBaseline(screenshot.getId());
-        if (compareResponse.getMisMatchPercentage() > acceptableMismatch) {
-            anglesReporter.fail("Image compare [" + screenshot.getView() + "]", "Mismatch below ["  + acceptableMismatch + "]%", "Mismatch was [" + compareResponse.getMisMatchPercentage() + "]", "");
-        } else {
-            anglesReporter.pass("Image compare [" + screenshot.getView() + "]\"", "Mismatch below [" + acceptableMismatch + "]%", "Mismatch was [" + compareResponse.getMisMatchPercentage() + "]", "");
+        if (compareResponse != null) {
+            if (compareResponse.getMisMatchPercentage() > acceptableMismatch) {
+                anglesReporter.fail("Image compare [" + screenshot.getView() + "]", "Mismatch below [" + acceptableMismatch + "]%", "Mismatch was [" + compareResponse.getMisMatchPercentage() + "]", "");
+            } else {
+                anglesReporter.pass("Image compare [" + screenshot.getView() + "]\"", "Mismatch below [" + acceptableMismatch + "]%", "Mismatch was [" + compareResponse.getMisMatchPercentage() + "]", "");
 
+            }
         }
     }
 

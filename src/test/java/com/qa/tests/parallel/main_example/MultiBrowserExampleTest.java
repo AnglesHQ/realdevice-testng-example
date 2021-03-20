@@ -73,7 +73,7 @@ public class MultiBrowserExampleTest extends BrowserBaseTest {
 
         Screenshot screenshot = TestUtils.takeScreenshot(remoteWebDriver.get(), "registration_page");
         // can only be used once a baseline is set.
-        //Reporter.compareAgainstBaseline(screenshot, 1.0);
+        Reporter.compareAgainstBaseline(screenshot, 1.0);
 
         Reporter.info("Current Url : " + remoteWebDriver.get().getCurrentUrl());
 
@@ -90,7 +90,7 @@ public class MultiBrowserExampleTest extends BrowserBaseTest {
         Screenshot secondScreenshot = TestUtils.takeScreenshot(remoteWebDriver.get(), "registration_page_populated");
 
         // can only be used once a baseline is set.
-        // Reporter.compareAgainstBaseline(secondScreenshot, 1.0);
+        Reporter.compareAgainstBaseline(secondScreenshot, 1.0);
 
         //assert the values
         Reporter.assertEquals(registerPage.getUserNameField(), randomUserName);
