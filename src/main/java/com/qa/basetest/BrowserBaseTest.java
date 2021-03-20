@@ -5,8 +5,10 @@ import com.qa.utils.Reporter;
 import com.qa.utils.TestUtils;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,6 +43,13 @@ public class BrowserBaseTest extends BaseTest {
         ArrayList<Object[]> filterMap = filterDevicesByArguments(deviceName, platformName, platformVersion, Boolean.valueOf(supported), "Browsers");
         Reporter.info("Number of browsers selected from sheet [" + filterMap.size() + "]");
         return filterMap.iterator();
+    }
+
+    @BeforeMethod(alwaysRun = true)
+    @Override
+    public synchronized void before(Method method) {
+        Reporter.startTest(method.getClass().getSimpleName() + " - " + deviceName , method.getName());
+        Reporter.info("### Starting test [" + method.getName() + "] ###");
     }
 
     /**
