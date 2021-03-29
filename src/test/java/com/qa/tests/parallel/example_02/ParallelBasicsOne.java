@@ -8,50 +8,49 @@ public class ParallelBasicsOne extends BaseTest {
 
     @BeforeClass
     private void testBeforeClass() {
-        Reporter.info("ParallelBasicsOne: @BeforeClass");
+        logger.info("ParallelBasicsOne: @BeforeClass");
         pause();
     }
 
     @AfterClass
     private void testAfterClass() {
-        Reporter.info("ParallelBasicsOne: @AfterClass");
+        logger.info("ParallelBasicsOne: @AfterClass");
         pause();
     }
 
     @BeforeMethod
     private void testBeforeMethod() {
-        Reporter.info("ParallelBasicsOne: @BeforeMethod");
+        logger.info("ParallelBasicsOne: @BeforeMethod");
         pause();
     }
 
     @AfterMethod
     private void testAfterMethod() {
-        Reporter.info("ParallelBasicsOne: @AfterMethod");
+        logger.info("ParallelBasicsOne: @AfterMethod");
         pause();
     }
 
     @Test
     private void ParallelBasicsOneTest1() {
-        Reporter.info("ParallelBasicsOne: ParallelBasicsOneTest1");
+        logger.info("ParallelBasicsOne: ParallelBasicsOneTest1");
         pause();
     }
 
     @Test
     private void ParallelBasicsOneTest2() {
-        Reporter.info("ParallelBasicsOne: ParallelBasicsOneTest2");
+        logger.info("ParallelBasicsOne: ParallelBasicsOneTest2");
         pause();
     }
 
     @Test
     private void ParallelBasicsOneTest3() {
-        Reporter.info("ParallelBasicsOne: ParallelBasicsOneTest3");
+        logger.info("ParallelBasicsOne: ParallelBasicsOneTest3");
         pause();
     }
 
-
     @Test
     private void ParallelBasicsOneTest4() {
-        Reporter.info("ParallelBasicsOne: ParallelBasicsOneTest4");
+        logger.info("ParallelBasicsOne: ParallelBasicsOneTest4");
         pause();
     }
 

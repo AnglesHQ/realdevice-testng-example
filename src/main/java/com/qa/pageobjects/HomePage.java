@@ -1,6 +1,5 @@
 package com.qa.pageobjects;
 
-import com.qa.utils.Reporter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -21,7 +20,7 @@ public class HomePage extends BasePage {
     public void navigateTo() {
         String url = baseProperties.get("url").toString();
         remoteWebDriver.get(url);
-        Reporter.info("Navigated to [" + url + "]");
+        logger.info("Navigated to [" + url + "]");
     }
 
     public void toggleMenu() {

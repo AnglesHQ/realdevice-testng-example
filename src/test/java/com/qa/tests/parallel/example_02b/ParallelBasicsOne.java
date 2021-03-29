@@ -8,31 +8,31 @@ public class ParallelBasicsOne extends BaseTest {
 
     @BeforeClass
     private void testBeforeClass() {
-        Reporter.info("ParallelBasicsTwo: @BeforeClass");
+        logger.info("ParallelBasicsTwo: @BeforeClass");
         pause();
     }
 
     @AfterClass
     private void testAfterClass() {
-        Reporter.info("ParallelBasicsTwo: @AfterClass");
+        logger.info("ParallelBasicsTwo: @AfterClass");
         pause();
     }
 
     @BeforeMethod
     private void testBeforeMethod() {
-        Reporter.info("ParallelBasicsTwo: @BeforeMethod");
+        logger.info("ParallelBasicsTwo: @BeforeMethod");
         pause();
     }
 
     @AfterMethod
     private void testAfterMethod() {
-        Reporter.info("ParallelBasicsTwo: @AfterMethod");
+        logger.info("ParallelBasicsTwo: @AfterMethod");
         pause();
     }
 
     @Test
     private void ParallelBasicsTwoTest1() {
-        Reporter.info("ParallelBasicsTwo: ParallelBasicsTwoTest1");
+        logger.info("ParallelBasicsTwo: ParallelBasicsTwoTest1");
         pause();
     }
 
@@ -63,7 +63,7 @@ public class ParallelBasicsOne extends BaseTest {
 
     @Test(dataProvider = "testProvider")
     private void ParallelInstancesTwoTestData(String test) {
-        Reporter.info("ParallelBasicsTwo: ParallelBasicsTwoTestData [" + test + "]");
+        logger.info("ParallelBasicsTwo: ParallelBasicsTwoTestData [" + test + "]");
         pause();
     }
 

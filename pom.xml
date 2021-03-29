@@ -31,9 +31,9 @@
         <!-- modify these values to meet your own config-->
         <angles_enabled>true</angles_enabled>
         <angles_host>http://127.0.0.1:3000</angles_host>
-        <angles_team>angles</angles_team>
+        <angles_team>qa</angles_team>
         <angles_environment>qa</angles_environment>
-        <angles_component>example</angles_component>
+        <angles_component>regression</angles_component>
         <angles_run_name>Example test run</angles_run_name>
     </properties>
     <profiles>
@@ -49,6 +49,14 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.18.1</version>
                         <configuration>
+                            <systemPropertyVariables>
+                                <angles.url>${angles_host}</angles.url>
+                                <angles.runName>${angles_run_name}</angles.runName>
+                                <angles.team>${angles_team}</angles.team>
+                                <angles.component>${angles_component}</angles.component>
+                                <angles.environment>${angles_environment}</angles.environment>
+                                <buildDirectory>${project.build.directory}</buildDirectory>
+                            </systemPropertyVariables>
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_01/testng.xml</suiteXmlFile>
                             </suiteXmlFiles>
@@ -66,6 +74,14 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.18.1</version>
                         <configuration>
+                            <systemPropertyVariables>
+                                <angles.url>${angles_host}</angles.url>
+                                <angles.runName>${angles_run_name}</angles.runName>
+                                <angles.team>${angles_team}</angles.team>
+                                <angles.component>${angles_component}</angles.component>
+                                <angles.environment>${angles_environment}</angles.environment>
+                                <buildDirectory>${project.build.directory}</buildDirectory>
+                            </systemPropertyVariables>
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_01b/testng_methods_timeout.xml</suiteXmlFile>
                             </suiteXmlFiles>
@@ -83,6 +99,15 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.18.1</version>
                         <configuration>
+                            <systemPropertyVariables>
+                                <angles.enabled>${angles_enabled}</angles.enabled>
+                                <angles.url>${angles_host}</angles.url>
+                                <angles.runName>${angles_run_name}</angles.runName>
+                                <angles.team>${angles_team}</angles.team>
+                                <angles.component>${angles_component}</angles.component>
+                                <angles.environment>${angles_environment}</angles.environment>
+                                <buildDirectory>${project.build.directory}</buildDirectory>
+                            </systemPropertyVariables>
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_02/testng_methods.xml</suiteXmlFile>
                             </suiteXmlFiles>
@@ -100,6 +125,14 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.18.1</version>
                         <configuration>
+                            <systemPropertyVariables>
+                                <angles.url>${angles_host}</angles.url>
+                                <angles.runName>${angles_run_name}</angles.runName>
+                                <angles.team>${angles_team}</angles.team>
+                                <angles.component>${angles_component}</angles.component>
+                                <angles.environment>${angles_environment}</angles.environment>
+                                <buildDirectory>${project.build.directory}</buildDirectory>
+                            </systemPropertyVariables>
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_02b/testng_methods_dataprovider.xml</suiteXmlFile>
                             </suiteXmlFiles>
@@ -117,6 +150,14 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.18.1</version>
                         <configuration>
+                            <systemPropertyVariables>
+                                <angles.url>${angles_host}</angles.url>
+                                <angles.runName>${angles_run_name}</angles.runName>
+                                <angles.team>${angles_team}</angles.team>
+                                <angles.component>${angles_component}</angles.component>
+                                <angles.environment>${angles_environment}</angles.environment>
+                                <buildDirectory>${project.build.directory}</buildDirectory>
+                            </systemPropertyVariables>
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_03/testng_tests.xml</suiteXmlFile>
                             </suiteXmlFiles>
@@ -134,6 +175,14 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.18.1</version>
                         <configuration>
+                            <systemPropertyVariables>
+                                <angles.url>${angles_host}</angles.url>
+                                <angles.runName>${angles_run_name}</angles.runName>
+                                <angles.team>${angles_team}</angles.team>
+                                <angles.component>${angles_component}</angles.component>
+                                <angles.environment>${angles_environment}</angles.environment>
+                                <buildDirectory>${project.build.directory}</buildDirectory>
+                            </systemPropertyVariables>
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_04/testng_classes.xml</suiteXmlFile>
                             </suiteXmlFiles>
@@ -151,6 +200,14 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.18.1</version>
                         <configuration>
+                            <systemPropertyVariables>
+                                <angles.url>${angles_host}</angles.url>
+                                <angles.runName>${angles_run_name}</angles.runName>
+                                <angles.team>${angles_team}</angles.team>
+                                <angles.component>${angles_component}</angles.component>
+                                <angles.environment>${angles_environment}</angles.environment>
+                                <buildDirectory>${project.build.directory}</buildDirectory>
+                            </systemPropertyVariables>
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_05/testng_instances.xml</suiteXmlFile>
                             </suiteXmlFiles>
@@ -168,6 +225,14 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.18.1</version>
                         <configuration>
+                            <systemPropertyVariables>
+                                <angles.url>${angles_host}</angles.url>
+                                <angles.runName>${angles_run_name}</angles.runName>
+                                <angles.team>${angles_team}</angles.team>
+                                <angles.component>${angles_component}</angles.component>
+                                <angles.environment>${angles_environment}</angles.environment>
+                                <buildDirectory>${project.build.directory}</buildDirectory>
+                            </systemPropertyVariables>
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_06a/testng_non_threadsafe.xml</suiteXmlFile>
                             </suiteXmlFiles>
@@ -185,6 +250,14 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.18.1</version>
                         <configuration>
+                            <systemPropertyVariables>
+                                <angles.url>${angles_host}</angles.url>
+                                <angles.runName>${angles_run_name}</angles.runName>
+                                <angles.team>${angles_team}</angles.team>
+                                <angles.component>${angles_component}</angles.component>
+                                <angles.environment>${angles_environment}</angles.environment>
+                                <buildDirectory>${project.build.directory}</buildDirectory>
+                            </systemPropertyVariables>
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_06b/testng_threadsafe.xml</suiteXmlFile>
                             </suiteXmlFiles>
@@ -202,6 +275,14 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.18.1</version>
                         <configuration>
+                            <systemPropertyVariables>
+                                <angles.url>${angles_host}</angles.url>
+                                <angles.runName>${angles_run_name}</angles.runName>
+                                <angles.team>${angles_team}</angles.team>
+                                <angles.component>${angles_component}</angles.component>
+                                <angles.environment>${angles_environment}</angles.environment>
+                                <buildDirectory>${project.build.directory}</buildDirectory>
+                            </systemPropertyVariables>
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/java/com/qa/tests/parallel/example_07/testng_interceptor.xml</suiteXmlFile>
                             </suiteXmlFiles>
@@ -231,6 +312,14 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.18.1</version>
                         <configuration>
+                            <systemPropertyVariables>
+                                <angles.url>${angles_host}</angles.url>
+                                <angles.runName>${angles_run_name}</angles.runName>
+                                <angles.team>${angles_team}</angles.team>
+                                <angles.component>${angles_component}</angles.component>
+                                <angles.environment>${angles_environment}</angles.environment>
+                                <buildDirectory>${project.build.directory}</buildDirectory>
+                            </systemPropertyVariables>
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/java/com/qa/tests/parallel/main_example/testng_devices.xml</suiteXmlFile>
                             </suiteXmlFiles>
@@ -258,6 +347,14 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>2.18.1</version>
                         <configuration>
+                            <systemPropertyVariables>
+                                <angles.url>${angles_host}</angles.url>
+                                <angles.runName>${angles_run_name}</angles.runName>
+                                <angles.team>${angles_team}</angles.team>
+                                <angles.component>${angles_component}</angles.component>
+                                <angles.environment>${angles_environment}</angles.environment>
+                                <buildDirectory>${project.build.directory}</buildDirectory>
+                            </systemPropertyVariables>
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/java/com/qa/tests/parallel/main_example/testng_browser.xml</suiteXmlFile>
                             </suiteXmlFiles>
@@ -344,9 +441,9 @@
 
         <!-- logging -->
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.16</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.14.1</version>
         </dependency>
 
         <dependency>

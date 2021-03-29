@@ -5,16 +5,16 @@ import com.github.angleshq.angles.api.models.build.Artifact;
 import com.github.angleshq.angles.api.models.screenshot.ImageCompareResponse;
 import com.github.angleshq.angles.api.models.screenshot.Screenshot;
 import com.github.angleshq.angles.api.models.screenshot.ScreenshotDetails;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
-import org.testng.TestNGException;
 
 import java.util.Properties;
 
 public class Reporter {
 
     private static AnglesReporter anglesReporter;
-    private static Logger logger = Logger.getLogger("Reporter");
+    private static final Logger logger = LogManager.getLogger(Reporter.class);
     private static Properties anglesProperties;
     private static Boolean anglesEnabled;
 
@@ -39,43 +39,9 @@ public class Reporter {
         }
     }
 
-    public static void startBuild() {
-        logger.info("Thread [" + Thread.currentThread().getId() + "] Starting build with angles enabled [" + anglesEnabled + "]");
-
-        if (anglesEnabled) {
-
-        }
-    }
-
-    public static void startTest(String suiteName, String testName) {
-        logger.info("Thread [" + Thread.currentThread().getId() + "] Starting Test: " + suiteName + " - " + testName);
-
-        if (anglesEnabled)
-            anglesReporter.startTest(suiteName, testName);
-    }
-
     public static void startAction(String action) {
         if (anglesEnabled)
             anglesReporter.startAction(action);
-    }
-
-    public static void saveTest() {
-        if (anglesEnabled)
-            anglesReporter.saveTest();
-    }
-
-    public static void debug(String message) {
-        logger.debug("Thread [" + Thread.currentThread().getId() + "] " + message);
-
-        if (anglesEnabled)
-            anglesReporter.debug(message);
-    }
-
-    public static void info(String message) {
-        logger.info("Thread [" + Thread.currentThread().getId() + "] " + message);
-
-        if (anglesEnabled)
-            anglesReporter.info(message);
     }
 
     public static void info(String message, String screenshotId) {
@@ -84,26 +50,6 @@ public class Reporter {
         if (anglesEnabled)
             anglesReporter.info(message, screenshotId);
     }
-
-    public static void pass(String name, String expected, String actual, String info) {
-        logger.info("Thread [" + Thread.currentThread().getId() + "] " + name);
-        if (anglesEnabled)
-            anglesReporter.pass(name, expected, actual, info);
-    }
-
-    public static void fail(String name, String expected, String actual, String info) {
-        logger.info("Thread [" + Thread.currentThread().getId() + "] " + name);
-        if (anglesEnabled)
-            anglesReporter.fail(name, expected, actual, info);
-    }
-
-    public static void error(String message) {
-        logger.info("Thread [" + Thread.currentThread().getId() + "] " + message);
-        if (anglesEnabled)
-            anglesReporter.error(message);
-        throw new TestNGException(message);
-    }
-
     public static Screenshot storeScreenshot(ScreenshotDetails details) {
         if (anglesEnabled)
             return anglesReporter.storeScreenshot(details);
@@ -130,6 +76,5 @@ public class Reporter {
             anglesReporter.fail("compare", expected.toString(), actual.toString(), "");
         }
         Assert.assertEquals(actual, expected);
-
     }
 }

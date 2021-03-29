@@ -39,9 +39,9 @@ public class MultiDeviceBaseTest extends BaseTest {
         String platformName = properties.getProperty("testobject_platform_name");
         String platformVersion = properties.getProperty("testobject_platform_version");
         String supported = properties.getProperty("supported_devices");
-        Reporter.info("Filtering arguments provided DeviceName [" + deviceName + "], PlatformName [" + platformName + "], PlatformVersion [" + platformVersion + "], Supported [" + supported + "]");
+        logger.info("Filtering arguments provided DeviceName [" + deviceName + "], PlatformName [" + platformName + "], PlatformVersion [" + platformVersion + "], Supported [" + supported + "]");
         ArrayList<Object[]> filterMap = filterDevicesByArguments(deviceName, platformName, platformVersion, supported);
-        Reporter.info("Number of device selected from sheet [" + filterMap.size() + "]");
+        logger.info("Number of device selected from sheet [" + filterMap.size() + "]");
         return filterMap.iterator();
     }
 
@@ -60,13 +60,13 @@ public class MultiDeviceBaseTest extends BaseTest {
         try {
             testObjectURL = new URL(urlString);
         } catch (MalformedURLException e) {
-            Reporter.error("The URL provided [" + urlString + "] is invalid due to [" + e.getMessage() + "]");
+            logger.error("The URL provided [" + urlString + "] is invalid due to [" + e.getMessage() + "]");
         }
 
         appiumDriver = instantiateAppiumDriver(deviceConfig);
 
         //report the device it was run against and the report url.
-        Reporter.info("Running tests against device [" + appiumDriver.getCapabilities().getCapability("testobject_device").toString() + "]. Results can be found here: [" + appiumDriver.getCapabilities().getCapability("testobject_test_report_url").toString() + "]");
+        logger.info("Running tests against device [" + appiumDriver.getCapabilities().getCapability("testobject_device").toString() + "]. Results can be found here: [" + appiumDriver.getCapabilities().getCapability("testobject_test_report_url").toString() + "]");
     }
 
     private AppiumDriver instantiateAppiumDriver(HashMap<String, Object> deviceConfig) {

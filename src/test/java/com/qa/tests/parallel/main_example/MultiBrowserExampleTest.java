@@ -32,14 +32,14 @@ public class MultiBrowserExampleTest extends BrowserBaseTest {
      */
     @BeforeMethod(alwaysRun = true)
     public void baseBeforeMethod(Method method) {
-        Reporter.info("Running test " +  method.getName() + " against device [" + deviceName + "].");
+        logger.info("Running test " +  method.getName() + " against device [" + deviceName + "].");
         remoteWebDriver.set(instantiateRemoteWebDriver(method.getName(), deviceConfig));
     }
 
     @AfterMethod(alwaysRun = true)
     public void baseAfterMethod() {
         if (remoteWebDriver.get() != null) {
-            Reporter.info("Tearing Down WebDriver");
+            logger.info("Tearing Down WebDriver");
             remoteWebDriver.get().close();
             remoteWebDriver.get().quit();
         }
@@ -60,7 +60,7 @@ public class MultiBrowserExampleTest extends BrowserBaseTest {
      * Running same test twice, but in reality these would be two different tests.
      */
     private void runTest() {
-        Reporter.startAction("Checking registration Page");
+//        Reporter.startAction("Checking registration Page");
         //visit home page
         HomePage homePage = new HomePage(remoteWebDriver.get(), baseProperties);
         homePage.navigateTo();
@@ -75,7 +75,7 @@ public class MultiBrowserExampleTest extends BrowserBaseTest {
         // can only be used once a baseline is set.
         Reporter.compareAgainstBaseline(screenshot, 1.0);
 
-        Reporter.info("Current Url : " + remoteWebDriver.get().getCurrentUrl());
+        logger.info("Current Url : " + remoteWebDriver.get().getCurrentUrl());
 
         //populate the fields
         registerPage.selectUserNameField();

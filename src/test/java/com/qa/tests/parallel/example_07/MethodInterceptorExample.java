@@ -13,42 +13,42 @@ public class MethodInterceptorExample extends BaseTest {
 
     @BeforeClass
     private void testBeforeClass() {
-        Reporter.info("MethodInterceptorExample: @BeforeClass");
+        logger.info("MethodInterceptorExample: @BeforeClass");
         pause();
     }
 
     @AfterClass
     private void testAfterClass() {
-        Reporter.info("MethodInterceptorExample: @AfterClass");
+        logger.info("MethodInterceptorExample: @AfterClass");
         pause();
     }
 
     @BeforeMethod
     private void testBeforeMethod(Method method) {
         testName.set(method.getName());
-        Reporter.info("MethodInterceptorExample: @BeforeMethod" + "[ " + testName.get() + "]");
+        logger.info("MethodInterceptorExample: @BeforeMethod" + "[ " + testName.get() + "]");
         pause();
     }
 
     @AfterMethod
     private void testAfterMethod() {
-        Reporter.info("MethodInterceptorExample: @AfterMethod" + "[ " + testName.get() + "]");
+        logger.info("MethodInterceptorExample: @AfterMethod" + "[ " + testName.get() + "]");
         pause();
     }
 
     @Test
     private void MethodInterceptorExampleTest1() {
-        Reporter.info("MethodInterceptorExample: Test1" + "[ " + testName.get() + "]");
+        logger.info("MethodInterceptorExample: Test1" + "[ " + testName.get() + "]");
     }
 
     @Test
     private void MethodInterceptorExampleTest2() {
-        Reporter.info("MethodInterceptorExample: Test2" + "[ " + testName.get() + "]");
+        logger.info("MethodInterceptorExample: Test2" + "[ " + testName.get() + "]");
     }
 
     // this test will be intercepted
     @Test
     private void MethodInterceptorExampleTest3() {
-        Reporter.info("MethodInterceptorExample: Test3" + "[ " + testName.get() + "]");
+        logger.info("MethodInterceptorExample: Test3" + "[ " + testName.get() + "]");
     }
 }

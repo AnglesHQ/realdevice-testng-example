@@ -1,7 +1,6 @@
 package com.qa.basetest;
 
 import com.qa.utils.PropertiesHelper;
-import com.qa.utils.Reporter;
 import com.qa.utils.TestUtils;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -27,6 +26,12 @@ public class BrowserBaseTest extends BaseTest {
     // has to be thread local as we will have multiple threads per class (e.g. running methods in parallel).
     protected ThreadLocal<RemoteWebDriver> remoteWebDriver = new ThreadLocal<>();
 
+    @BeforeMethod
+    @Override
+    public void anglesBeforeMethod(Method method) {
+        anglesReporter.startTest(method.getClass().getSimpleName(), method.getName() + " [" + deviceName + "]");
+    }
+
     /**
      *  This data provider can be adapted to return a single or a whole bunch of devices.
      *
@@ -39,17 +44,10 @@ public class BrowserBaseTest extends BaseTest {
         String platformName = properties.getProperty("saucelabs_platform_name");
         String platformVersion = properties.getProperty("saucelabs_platform_version");
         String supported = properties.getProperty("supported_devices");
-        Reporter.info("Filtering arguments provided DeviceName [" + deviceName + "], PlatformName [" + platformName + "], PlatformVersion [" + platformVersion + "], Supported [" + supported + "]");
+        logger.info("Filtering arguments provided DeviceName [" + deviceName + "], PlatformName [" + platformName + "], PlatformVersion [" + platformVersion + "], Supported [" + supported + "]");
         ArrayList<Object[]> filterMap = filterDevicesByArguments(deviceName, platformName, platformVersion, Boolean.valueOf(supported), "Browsers");
-        Reporter.info("Number of browsers selected from sheet [" + filterMap.size() + "]");
+        logger.info("Number of browsers selected from sheet [" + filterMap.size() + "]");
         return filterMap.iterator();
-    }
-
-    @BeforeMethod(alwaysRun = true)
-    @Override
-    public synchronized void before(Method method) {
-        Reporter.startTest(method.getClass().getSimpleName() + " - " + deviceName , method.getName());
-        Reporter.info("### Starting test [" + method.getName() + "] ###");
     }
 
     /**
@@ -79,7 +77,7 @@ public class BrowserBaseTest extends BaseTest {
             sauceLabsURL = new URL(urlString);
             webDriver = new RemoteWebDriver(sauceLabsURL, desiredCapabilities);
         } catch (Exception exception) {
-            Reporter.info(exception.getMessage());
+            logger.info(exception.getMessage());
             // trying again, probably worth adding better handling
             webDriver = new RemoteWebDriver(sauceLabsURL, desiredCapabilities);
         }

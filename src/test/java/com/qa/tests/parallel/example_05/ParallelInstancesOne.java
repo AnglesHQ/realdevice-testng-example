@@ -25,49 +25,49 @@ public class ParallelInstancesOne extends BaseTest {
 
     @BeforeClass
     private void testBeforeClass() {
-        Reporter.info("ParallelInstancesOne [" + testName + "]: @BeforeClass");
+        logger.info("ParallelInstancesOne [" + testName + "]: @BeforeClass");
         pause();
     }
 
     @AfterClass
     private void testAfterClass() {
-        Reporter.info("ParallelInstancesOne [" + testName + "]: @AfterClass");
+        logger.info("ParallelInstancesOne [" + testName + "]: @AfterClass");
         pause();
     }
 
     @BeforeMethod
     private void testBeforeMethod() {
-        Reporter.info("ParallelInstancesOne [" + testName + "]: @BeforeMethod");
+        logger.info("ParallelInstancesOne [" + testName + "]: @BeforeMethod");
         pause();
     }
 
     @AfterMethod
     private void testAfterMethod() {
-        Reporter.info("ParallelInstancesOne [" + testName + "]: @AfterMethod");
+        logger.info("ParallelInstancesOne [" + testName + "]: @AfterMethod");
         pause();
     }
 
     @Test
     private void ParallelInstancesOneTest1() {
-        Reporter.info("[" + testName + "]: Test 1");
+        logger.info("[" + testName + "]: Test 1");
         pause();
     }
 
     @Test
     private void ParallelInstancesOneTest2() {
-        Reporter.info("[" + testName + "]: Test 2");
+        logger.info("[" + testName + "]: Test 2");
         pause();
     }
 
     @Test
     private void ParallelInstancesOneTest3() {
-        Reporter.info("[" + testName + "]: Test 3");
+        logger.info("[" + testName + "]: Test 3");
         pause();
     }
 
     @Test
     private void ParallelInstancesOneTest4() {
-        Reporter.info("[" + testName + "]: Test 4");
+        logger.info("[" + testName + "]: Test 4");
         pause();
     }
 

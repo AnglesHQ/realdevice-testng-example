@@ -1,31 +1,17 @@
 package com.qa.basetest;
 
+import com.github.angleshq.angles.listeners.testng.AnglesBaseTest;
 import com.qa.utils.ExcelHelper;
-import com.qa.utils.Reporter;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Listeners;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 @Listeners({ BaseMethodsInterceptor.class })
-public abstract class BaseTest {
+public abstract class BaseTest extends AnglesBaseTest {
 
-
-    @BeforeMethod(alwaysRun = true)
-    public synchronized void before(Method method) {
-        Reporter.startTest(method.getClass().getSimpleName(), method.getName());
-        Reporter.info("### Starting test [" + method.getName() + "] ###");
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public synchronized void after(Method method) {
-        Reporter.startAction("after");
-        Reporter.info("### Finishing test [" + method.getName() + "] ###");
-        Reporter.saveTest();
-    }
+    protected static final Logger logger = LogManager.getLogger(BaseTest.class);
 
     /**
      *

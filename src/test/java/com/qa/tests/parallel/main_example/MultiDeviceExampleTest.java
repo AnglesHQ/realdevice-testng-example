@@ -53,7 +53,7 @@ public class MultiDeviceExampleTest extends MultiDeviceBaseTest {
         registerPage.waitforPageLoaded();
         Screenshot screenshot = TestUtils.takeScreenshot(appiumDriver, "registration_page");
         Reporter.compareAgainstBaseline(screenshot, 1.0);
-        Reporter.info("Current Url : " + appiumDriver.getCurrentUrl());
+        logger.info("Current Url : " + appiumDriver.getCurrentUrl());
 
         //populate the fields
         registerPage.selectUserNameField();
