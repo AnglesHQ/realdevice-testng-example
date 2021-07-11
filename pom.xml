@@ -31,9 +31,9 @@
         <!-- modify these values to meet your own config-->
         <angles_enabled>true</angles_enabled>
         <angles_host>http://127.0.0.1:3000</angles_host>
-        <angles_team>qa</angles_team>
+        <angles_team>angles</angles_team>
         <angles_environment>qa</angles_environment>
-        <angles_component>regression</angles_component>
+        <angles_component>example</angles_component>
         <angles_run_name>Example test run</angles_run_name>
     </properties>
     <profiles>
@@ -348,6 +348,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <systemPropertyVariables>
+                                <angles.enabled>true</angles.enabled>
                                 <angles.url>${angles_host}</angles.url>
                                 <angles.runName>${angles_run_name}</angles.runName>
                                 <angles.team>${angles_team}</angles.team>
@@ -448,8 +449,8 @@
 
         <dependency>
             <groupId>com.github.angleshq</groupId>
-            <artifactId>angles-java-client</artifactId>
-            <version>1.0.0-BETA5</version>
+            <artifactId>angles-testng</artifactId>
+            <version>1.0.24</version>
         </dependency>
 
     </dependencies>

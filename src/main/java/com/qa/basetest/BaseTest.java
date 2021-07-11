@@ -1,6 +1,6 @@
 package com.qa.basetest;
 
-import com.github.angleshq.angles.listeners.testng.AnglesBaseTest;
+import com.github.angleshq.angles.basetest.testng.AnglesTestngBaseTest;
 import com.qa.utils.ExcelHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,7 +9,7 @@ import org.testng.annotations.Listeners;
 import java.util.ArrayList;
 
 @Listeners({ BaseMethodsInterceptor.class })
-public abstract class BaseTest extends AnglesBaseTest {
+public abstract class BaseTest extends AnglesTestngBaseTest {
 
     protected static final Logger logger = LogManager.getLogger(BaseTest.class);
 

@@ -1,6 +1,6 @@
 package com.qa.tests.parallel.common;
 
-import com.github.angleshq.angles.listeners.testng.AnglesBaseTest;
+import com.github.angleshq.angles.basetest.testng.AnglesTestngBaseTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.*;
@@ -8,7 +8,7 @@ import org.testng.annotations.*;
 import java.lang.reflect.Method;
 import java.util.Random;
 
-public abstract class BaseTest extends AnglesBaseTest {
+public abstract class BaseTest extends AnglesTestngBaseTest {
 
     protected static final Logger logger = LogManager.getLogger(BaseTest.class);
     public static final int MIN_WAIT = 100;
