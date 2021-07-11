@@ -50,6 +50,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <systemPropertyVariables>
+                                <angles.enabled>${angles_enabled}</angles.enabled>
                                 <angles.url>${angles_host}</angles.url>
                                 <angles.runName>${angles_run_name}</angles.runName>
                                 <angles.team>${angles_team}</angles.team>
@@ -75,6 +76,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <systemPropertyVariables>
+                                <angles.enabled>${angles_enabled}</angles.enabled>
                                 <angles.url>${angles_host}</angles.url>
                                 <angles.runName>${angles_run_name}</angles.runName>
                                 <angles.team>${angles_team}</angles.team>
@@ -126,6 +128,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <systemPropertyVariables>
+                                <angles.enabled>${angles_enabled}</angles.enabled>
                                 <angles.url>${angles_host}</angles.url>
                                 <angles.runName>${angles_run_name}</angles.runName>
                                 <angles.team>${angles_team}</angles.team>
@@ -151,6 +154,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <systemPropertyVariables>
+                                <angles.enabled>${angles_enabled}</angles.enabled>
                                 <angles.url>${angles_host}</angles.url>
                                 <angles.runName>${angles_run_name}</angles.runName>
                                 <angles.team>${angles_team}</angles.team>
@@ -176,6 +180,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <systemPropertyVariables>
+                                <angles.enabled>${angles_enabled}</angles.enabled>
                                 <angles.url>${angles_host}</angles.url>
                                 <angles.runName>${angles_run_name}</angles.runName>
                                 <angles.team>${angles_team}</angles.team>
@@ -201,6 +206,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <systemPropertyVariables>
+                                <angles.enabled>${angles_enabled}</angles.enabled>
                                 <angles.url>${angles_host}</angles.url>
                                 <angles.runName>${angles_run_name}</angles.runName>
                                 <angles.team>${angles_team}</angles.team>
@@ -226,6 +232,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <systemPropertyVariables>
+                                <angles.enabled>${angles_enabled}</angles.enabled>
                                 <angles.url>${angles_host}</angles.url>
                                 <angles.runName>${angles_run_name}</angles.runName>
                                 <angles.team>${angles_team}</angles.team>
@@ -251,6 +258,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <systemPropertyVariables>
+                                <angles.enabled>${angles_enabled}</angles.enabled>
                                 <angles.url>${angles_host}</angles.url>
                                 <angles.runName>${angles_run_name}</angles.runName>
                                 <angles.team>${angles_team}</angles.team>
@@ -276,6 +284,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <systemPropertyVariables>
+                                <angles.enabled>${angles_enabled}</angles.enabled>
                                 <angles.url>${angles_host}</angles.url>
                                 <angles.runName>${angles_run_name}</angles.runName>
                                 <angles.team>${angles_team}</angles.team>
@@ -313,6 +322,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <systemPropertyVariables>
+                                <angles.enabled>${angles_enabled}</angles.enabled>
                                 <angles.url>${angles_host}</angles.url>
                                 <angles.runName>${angles_run_name}</angles.runName>
                                 <angles.team>${angles_team}</angles.team>
@@ -348,7 +358,7 @@
                         <version>2.18.1</version>
                         <configuration>
                             <systemPropertyVariables>
-                                <angles.enabled>true</angles.enabled>
+                                <angles.enabled>${angles_enabled}</angles.enabled>
                                 <angles.url>${angles_host}</angles.url>
                                 <angles.runName>${angles_run_name}</angles.runName>
                                 <angles.team>${angles_team}</angles.team>
