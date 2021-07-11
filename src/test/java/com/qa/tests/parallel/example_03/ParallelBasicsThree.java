@@ -8,37 +8,37 @@ public class ParallelBasicsThree extends BaseTest {
 
     @BeforeClass
     private void testBeforeClass() {
-        Reporter.info("ParallelBasicsThree: @BeforeClass");
+        logger.info("ParallelBasicsThree: @BeforeClass");
         pause();
     }
 
     @AfterClass
     private void testAfterClass() {
-        Reporter.info("ParallelBasicsThree: @AfterClass");
+        logger.info("ParallelBasicsThree: @AfterClass");
         pause();
     }
 
     @BeforeMethod
     private void testBeforeMethod() {
-        Reporter.info("ParallelBasicsThree: @BeforeMethod");
+        logger.info("ParallelBasicsThree: @BeforeMethod");
         pause();
     }
 
     @AfterMethod
     private void testAfterMethod() {
-        Reporter.info("ParallelBasicsThree: @AfterMethod");
+        logger.info("ParallelBasicsThree: @AfterMethod");
         pause();
     }
 
     @Test
     private void ParallelBasicsThreeTest1() {
-        Reporter.info("ParallelBasicsThree: ParallelBasicsThreeTest1");
+        logger.info("ParallelBasicsThree: ParallelBasicsThreeTest1");
         pause();
     }
 
     @Test
     private void ParallelBasicsThreeTest2() {
-        Reporter.info("ParallelBasicsThree: ParallelBasicsThreeTest2");
+        logger.info("ParallelBasicsThree: ParallelBasicsThreeTest2");
         pause();
     }
 }

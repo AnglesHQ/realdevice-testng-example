@@ -2,45 +2,46 @@ package com.qa.tests.parallel.example_01;
 
 import com.qa.tests.parallel.common.BaseTest;
 import com.qa.utils.Reporter;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 public class HooksBasicsOne extends BaseTest {
 
     @BeforeClass
     private void testBeforeClass() {
-        Reporter.info("HooksBasicsOne: @BeforeClass");
+        logger.info("HooksBasicsOne: @BeforeClass");
         pause();
     }
 
     @AfterClass
     private void testAfterClass() {
-        Reporter.info("HooksBasicsOne: @AfterClass");
+        logger.info("HooksBasicsOne: @AfterClass");
         pause();
     }
 
     @BeforeMethod
     private void testBeforeMethod() {
-        Reporter.info("HooksBasicsOne: @BeforeMethod");
+        logger.info("HooksBasicsOne: @BeforeMethod");
         pause();
     }
 
     @AfterMethod
     private void testAfterMethod() {
-        Reporter.info("HooksBasicsOne: @AfterMethod");
+        logger.info("HooksBasicsOne: @AfterMethod");
         pause();
     }
 
     @Test
     private void HooksBasicsOneTest1() {
-        Reporter.startAction("Running Test");
-        Reporter.info("HooksBasicsOne: HooksBasicsOneTest1");
+        logger.info("HooksBasicsOne: HooksBasicsOneTest1");
+        Assert.assertEquals("pass", "pass");
         pause();
     }
 
     @Test
     private void HooksBasicsOneTest2() {
-        Reporter.startAction("Running Test");
-        Reporter.info("HooksBasicsOne: HooksBasicsOneTest2");
+        logger.info("HooksBasicsOne: HooksBasicsOneTest2");
+        Assert.assertEquals("pass", "pass");
         pause();
     }
 }

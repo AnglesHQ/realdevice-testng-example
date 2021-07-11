@@ -13,13 +13,13 @@ public class ThreadSafeExampleOne extends BaseTest {
 
     @BeforeClass
     private void testBeforeClass() {
-        Reporter.info("ThreadSafeExampleOne: @BeforeClass");
+        logger.info("ThreadSafeExampleOne: @BeforeClass");
         pause();
     }
 
     @AfterClass
     private void testAfterClass() {
-        Reporter.info("ThreadSafeExampleOne: @AfterClass");
+        logger.info("ThreadSafeExampleOne: @AfterClass");
         pause();
     }
 
@@ -27,28 +27,28 @@ public class ThreadSafeExampleOne extends BaseTest {
     private void testBeforeMethod(Method method) {
         // as the before method is run by the same thread as the test we can set it here.
         testName.set(method.getName());
-        Reporter.info("ThreadSafeExampleOne: @BeforeMethod" + "[ " + testName.get() + "]");
+        logger.info("ThreadSafeExampleOne: @BeforeMethod" + "[ " + testName.get() + "]");
         pause();
     }
 
     @AfterMethod
     private void testAfterMethod() {
-        Reporter.info("ThreadSafeExampleOne: @AfterMethod" + "[ " + testName.get() + "]");
+        logger.info("ThreadSafeExampleOne: @AfterMethod" + "[ " + testName.get() + "]");
         pause();
     }
 
     @Test
     private void ParallelInstancesOneTest1() {
-        Reporter.info("ThreadSafeExampleOne: ParallelInstancesOneTest1" + "[ " + testName.get() + "]");
+        logger.info("ThreadSafeExampleOne: ParallelInstancesOneTest1" + "[ " + testName.get() + "]");
     }
 
     @Test
     private void ParallelInstancesOneTest2() {
-        Reporter.info("ThreadSafeExampleOne: ParallelInstancesOneTest2" + "[ " + testName.get() + "]");
+        logger.info("ThreadSafeExampleOne: ParallelInstancesOneTest2" + "[ " + testName.get() + "]");
     }
 
     @Test
     private void ParallelInstancesOneTest3() {
-        Reporter.info("ThreadSafeExampleOne: ParallelInstancesOneTest3" + "[ " + testName.get() + "]");
+        logger.info("ThreadSafeExampleOne: ParallelInstancesOneTest3" + "[ " + testName.get() + "]");
     }
 }

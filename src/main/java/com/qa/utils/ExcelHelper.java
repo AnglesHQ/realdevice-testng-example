@@ -1,40 +1,39 @@
 package com.qa.utils;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
-import org.apache.poi.openxml4j.util.ZipSecureFile;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.ConcurrentSkipListMap;
 
 public class ExcelHelper {
 
     private static final int FIRST_COLUMN = 0;
     private XSSFWorkbook workbook;
     private XSSFSheet activeSheet;
+    private static final Logger logger = LogManager.getLogger(ExcelHelper.class);
 
     public ExcelHelper loadExcelFile(String excelFilePath) {
         if (excelFilePath.length() == 0 || excelFilePath == null) {
-            Reporter.error("Please enter a file path for the spreadsheet.");
+            logger.error("Please enter a file path for the spreadsheet.");
             return null;
         } else {
             try {
                 setWorkbook(new XSSFWorkbook(new FileInputStream(excelFilePath)));
                 setActiveSheet(getWorkbook().getSheetName(0));
             } catch (FileNotFoundException e) {
-                Reporter.error("Spreadsheet not found at specified path.");
+                logger.error("Spreadsheet not found at specified path.");
             } catch (IOException e) {
-                Reporter.error("Couldn't read file from the location.  This could be cause by a network issue or the library" +
+                logger.error("Couldn't read file from the location.  This could be cause by a network issue or the library" +
                         " not having access to the file location.");
             }
             return this;
@@ -43,16 +42,16 @@ public class ExcelHelper {
 
     public ExcelHelper loadExcelFileAsResource(String excelFilePath) {
         if (excelFilePath.length() == 0 || excelFilePath == null) {
-            Reporter.error("Please enter a file path for the spreadsheet.");
+            logger.error("Please enter a file path for the spreadsheet.");
             return null;
         } else {
             try {
                 setWorkbook(new XSSFWorkbook(Thread.currentThread().getClass().getResourceAsStream(excelFilePath)));
                 setActiveSheet(getWorkbook().getSheetName(0));
             } catch (FileNotFoundException e) {
-                Reporter.error("Spreadsheet not found at specified path.");
+                logger.error("Spreadsheet not found at specified path.");
             } catch (IOException e) {
-                Reporter.error("Couldn't read file from the location.  This could be cause by a network issue or the library" +
+                logger.error("Couldn't read file from the location.  This could be cause by a network issue or the library" +
                         " not having access to the file location.");
             }
             return this;
@@ -73,13 +72,13 @@ public class ExcelHelper {
 
     public ExcelHelper setActiveSheet(String worksheetName) {
         if (worksheetName == null || worksheetName.length() == 0) {
-            Reporter.error("Please enter a worksheet name.");
+            logger.error("Please enter a worksheet name.");
             return null;
         } else {
             activeSheet = workbook.getSheet(worksheetName);
 
             if (activeSheet == null) {
-                Reporter.error("Worksheet with the given name is not found in the workbook.");
+                logger.error("Worksheet with the given name is not found in the workbook.");
                 return null;
             } else {
                 return this;
@@ -143,7 +142,7 @@ public class ExcelHelper {
                         break;
                     default:
                         rowHash.put(columnHeadingArray[columnNumber], cell.getRawValue());
-                        Reporter.debug("The value in cell on row " + counter + ", column " + columnNumber + " has a unknown type.");
+                        logger.debug("The value in cell on row " + counter + ", column " + columnNumber + " has a unknown type.");
                 }
             }
             testData.add(new Object[] { rowHash });

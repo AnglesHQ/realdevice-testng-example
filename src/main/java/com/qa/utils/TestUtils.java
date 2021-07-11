@@ -3,8 +3,9 @@ package com.qa.utils;
 import com.github.angleshq.angles.api.models.Platform;
 import com.github.angleshq.angles.api.models.screenshot.Screenshot;
 import com.github.angleshq.angles.api.models.screenshot.ScreenshotDetails;
-import io.appium.java_client.AppiumDriver;
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -15,8 +16,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
 import java.io.IOException;
-import java.rmi.Remote;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,6 +23,7 @@ import java.util.Properties;
 
 public class TestUtils {
 
+    private static final Logger logger = LogManager.getLogger(TestUtils.class);
     private static String defaultScreenshotDirectory = "target" + File.separator + "qa-logs" + File.separator + "screenshots" + File.separator;
 
     public static DesiredCapabilities createDesiredCaps(Properties defaultProperties, HashMap<String, Object> deviceConfigMap) {
@@ -71,7 +71,7 @@ public class TestUtils {
             Reporter.info("Took screenshot", storedScreenshot.getId());
             return storedScreenshot;
         } catch (IOException e) {
-            Reporter.error("Could not take Screenshot: " + e.getMessage());
+            logger.error("Could not take Screenshot: " + e.getMessage());
             return null;
         }
     }

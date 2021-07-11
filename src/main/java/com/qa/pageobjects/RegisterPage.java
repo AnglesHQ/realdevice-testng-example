@@ -1,7 +1,5 @@
 package com.qa.pageobjects;
 
-import com.qa.utils.Reporter;
-import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -24,7 +22,7 @@ public class RegisterPage extends BasePage {
     public void navigateTo() {
         String url = baseProperties.get("url").toString();
         remoteWebDriver.get(url + "/join");
-        Reporter.info("Navigated to [" + url + "]");
+        logger.info("Navigated to [" + url + "]");
     }
 
     public void waitforPageLoaded() {

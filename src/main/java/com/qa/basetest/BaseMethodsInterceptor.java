@@ -1,7 +1,8 @@
 package com.qa.basetest;
 
 import com.qa.basetest.tags.*;
-import com.qa.utils.Reporter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.IMethodInstance;
 import org.testng.IMethodInterceptor;
 import org.testng.ITestContext;
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class BaseMethodsInterceptor implements IMethodInterceptor {
 
+	protected static final Logger logger = LogManager.getLogger(BaseMethodsInterceptor.class);
 	private List<String> testPhases = null;
 	private List<String> tags = null;
 
@@ -67,7 +69,7 @@ public class BaseMethodsInterceptor implements IMethodInterceptor {
 			Boolean deviceTypeMatch = doesTestMatchDeviceTypesCriteria(classTestTags, methodTestTags, deviceType);
 			Boolean platformNameMatch = doesTestMatchPlatformNameCriteria(classTestTags, methodTestTags, platformName);
 
-			Reporter.info("Test [" + m.getMethod().getMethodName().toString() + "] matching group values, phases: [" + phasesMatch + "], tags: [" + tagsMatch
+			logger.info("Test [" + m.getMethod().getMethodName().toString() + "] matching group values, phases: [" + phasesMatch + "], tags: [" + tagsMatch
 					+ "], deviceType: [" + deviceTypeMatch + "], plaformName: [" + platformNameMatch + "]");
 
 			if (phasesMatch && tagsMatch && deviceTypeMatch && platformNameMatch) {
@@ -141,7 +143,7 @@ public class BaseMethodsInterceptor implements IMethodInterceptor {
 		//check deviceType passed is valid
 		DeviceType currentDeviceType = DeviceType.valueOf(deviceTypeCurrentDevice.toUpperCase());
 		if (currentDeviceType == null) {
-			Reporter.error("The device type provide is invalid [" + deviceTypeCurrentDevice + "]");
+			logger.error("The device type provide is invalid [" + deviceTypeCurrentDevice + "]");
 		}
 
 		// now go through each device type in the arguments and see if either class or method info match it.
@@ -176,7 +178,7 @@ public class BaseMethodsInterceptor implements IMethodInterceptor {
 		//check deviceType passed is valid
 		Platform currentPlatformNames = Platform.valueOf(platformNameCurrentDevice.toUpperCase());
 		if (currentPlatformNames == null) {
-			Reporter.error("The device type provide is invalid [" + platformNameCurrentDevice + "]");
+			logger.error("The device type provide is invalid [" + platformNameCurrentDevice + "]");
 		}
 
 		// now go through each device type in the arguments and see if either class or method info match it.
